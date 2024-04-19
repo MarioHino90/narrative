@@ -1,24 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import {
+  CssBaseline,
+  Typography,
+  AppBar,
+  Toolbar,
+  Container,
+} from "@mui/material";
+import CSVDisplay from "./components/CSVDisplay";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <CssBaseline />
+      <AppBar position="static">
+        <Toolbar>
+          <Typography variant="h6" component="div">
+            Narrative CSS Uploader App
+          </Typography>
+        </Toolbar>
+      </AppBar>
+      <Container style={{ marginTop: "20px" }}>
+        <Typography variant="h4" gutterBottom>
+          Welcome to the CSV Uploader Tool!
+        </Typography>
+        <Typography variant="body1">
+          This CSV Uploader Tool is designed to map CSV file uploads to a
+          specified database structure, allowing for dynamic adjustment to
+          different CSV headers and database schemas.
+        </Typography>
+        <CSVDisplay />
+      </Container>
+    </>
   );
 }
 
