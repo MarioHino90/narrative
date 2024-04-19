@@ -4,17 +4,17 @@ This CSV Uploader Tool is designed to map CSV file uploads to a specified databa
 
 For example, let’s say the input data is:
 
-![alt text](image.png)
+![alt text](./description/image.png)
 
 (This is just an example CSV, the input data could have different headers)
 
 The database structure is
 
-![alt text](image-1.png)
+![alt text](./description/image-1.png)
 
 Example result from a mapping:
 
-![alt text](image-2.png)
+![alt text](./description/image-2.png)
 
 ## Features
 
