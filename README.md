@@ -33,20 +33,11 @@ Ensure you have Docker installed on your machine. If not, you can install Docker
 
 ### Installation
 
-1. **Clone the repository**
+**Clone the repository**
 
 ```bash
 git clone https://github.com/yourusername/csv-uploader-tool.git
 cd csv-uploader-tool
-```
-
-2. **Build the Docker container**
-```bash
-docker-compose build
-```
-3. **Run the Docker container**
-```bash
-docker-compose up
 ```
 
 After running this command, the application should be accessible at http://localhost:3030
