@@ -45,5 +45,11 @@ cd csv-uploader-tool
 cd server/csv_mapper
 python3 manage.py runserver 
 ```
+**Start Webapp**
+
+```bash
+cd frontend
+npm start
+```
 
 After running this command, the application should be accessible at http://localhost:3030
