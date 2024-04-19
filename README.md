@@ -39,5 +39,11 @@ Ensure you have Docker installed on your machine. If not, you can install Docker
 git clone https://github.com/yourusername/csv-uploader-tool.git
 cd csv-uploader-tool
 ```
+**Start Backend Server**
+
+```bash
+cd server/csv_mapper
+python3 manage.py runserver 
+```
 
 After running this command, the application should be accessible at http://localhost:3030
