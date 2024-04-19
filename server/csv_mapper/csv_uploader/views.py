@@ -1,10 +1,8 @@
 from django.shortcuts import render
-from django.core.serializers import serialize
 from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
 from .models import MappedData
 import pandas as pd
-import json
 import io
 
 # Create your views here.
