@@ -1,10 +1,9 @@
 from django.shortcuts import render
 from rest_framework.decorators import api_view
+from rest_framework.response import Response
 from django.views.decorators.csrf import csrf_exempt
-from django.http import JsonResponse
 from .models import MappedData
-import pandas as pd
-import io
+from .utils import validate_file, process_csv_data
 
 # Create your views here.
 
@@ -12,40 +11,19 @@ import io
 @csrf_exempt
 @api_view(['POST'])
 def upload_csv(request):
-    csv_file = request.FILES['file']
-    decoded_file = csv_file.read().decode('utf-8')
-    io_string = io.StringIO(decoded_file)
-    df = pd.read_csv(io_string)
-    dic_data = df.to_dict(orient='records')
-    state_mapping = {
-        'Boston': 'MA',
-        'Palo Alto': 'CA',
-    }
-    num_columns = df.shape[1]
-    result_data = []
+    uploaded_file = request.FILES.get('file', None)
+    error_message, status = validate_file(uploaded_file)
+    if error_message:
+        return Response({'error': error_message}, status=status)
 
-    for row in dic_data:
-        classes = [row.get(f'Class {i}', '') for i in range(
-            1, num_columns) if row.get(f'Class {i}', None) is not None]
-        # Default to original if no mapping found
-        state_abbreviation = state_mapping.get(
-            row['Location'], row['Location'])
+    try:
+        objects_to_create = process_csv_data(uploaded_file)
+        print("Result output", objects_to_create)
 
-        # Create MappedData object
-        for class_name in classes:
-            fullName = f"{row['First Name']} {row['Last Name']}"
+        for obj in objects_to_create:
             MappedData.objects.create(
-                name=fullName,
-                # This should be dynamic based on the input
-                class_field=class_name,
-                school=row['School'],
-                # This needs a mapping logic to convert to state abbreviations
-                state=state_abbreviation
-            )
-            result_data.append({
-                'name': fullName,
-                'class': class_name,
-                'school': row['School'],
-                'state': state_abbreviation
-            })
-    return JsonResponse({'status': 'success', 'result': result_data})
+                name=obj['name'], class_field=obj['class'], school=obj['school'], state=obj['state'])
+
+        return Response({'message': 'CSV file uploaded and processed successfully', 'result': objects_to_create})
+    except Exception as e:
+        return Response({'error': str(e)}, status=500)
