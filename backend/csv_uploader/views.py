@@ -1,14 +1,11 @@
 from django.shortcuts import render
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from django.views.decorators.csrf import csrf_exempt
 from .models import MappedData
 from .utils import validate_file, process_csv_data
 
 # Create your views here.
 
-
-@csrf_exempt
 @api_view(['POST'])
 def upload_csv(request):
     uploaded_file = request.FILES.get('file', None)
