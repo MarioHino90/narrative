@@ -14,7 +14,7 @@ function App() {
       <AppBar position="static">
         <Toolbar>
           <Typography variant="h6" component="div">
-            Narrative CSS Uploader App
+            CSS Uploader Tool
           </Typography>
         </Toolbar>
       </AppBar>
