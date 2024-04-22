@@ -39,13 +39,20 @@ Ensure you have Docker installed on your machine. If not, you can install Docker
 git clone https://github.com/yourusername/csv-uploader-tool.git
 cd csv-uploader-tool
 ```
-**Start Backend Server**
+
+**Run application with docker**
+```bash
+docker-comose build
+docker-compose up
+```
+
+**Start Backend Server without docker**
 
 ```bash
-cd server/csv_mapper
+cd backend
 python3 manage.py runserver 
 ```
-**Start Webapp**
+**Start Frontend without docker**
 
 ```bash
 cd frontend
