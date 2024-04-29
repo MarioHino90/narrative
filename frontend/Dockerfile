@@ -2,7 +2,7 @@
 FROM node:18-alpine as build
 
 # Set working directory
-WORKDIR /app
+WORKDIR /frontend
 
 # Install dependencies
 COPY package.json ./
